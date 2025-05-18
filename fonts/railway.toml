@@ -1,11 +1,15 @@
 # railway.toml
 
+
 [build]
-# Specify the Dockerfile (if you're using one)
 dockerfile = "Dockerfile"
 
 [deploy]
-startCommand = "gunicorn --bind 0.0.0.0:6000 --workers 4 app:app"
+startCommand = "gunicorn --bind 0.0.0.0:5000 --workers 4 main:app"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "never"
+
 
 [env]
 FLASK_APP = "app.py"
